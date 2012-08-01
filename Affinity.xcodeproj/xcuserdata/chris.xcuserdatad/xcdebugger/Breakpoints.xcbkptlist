@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "1.0">
+   <FileBreakpoints>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "RechercheCarte2.m"
+         timestampString = "332723919.556988"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "19"
+         endingLineNumber = "19"
+         landmarkName = "@implementation RechercheCarte2"
+         landmarkType = "3">
+         <Locations>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 tableauAnnonces1]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.059806"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 setTableauAnnonces1:]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.071406"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 criteres2]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.071712"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 setCriteres2:]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.07201"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 criteres1]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.072235"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[RechercheCarte2 setCriteres1:]"
+               urlString = "file://localhost/Users/chris/Appli%20Iphone/Projets/Affinity/Classes/../RechercheCarte2.m"
+               timestampString = "332722860.074955"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "19"
+               endingLineNumber = "19">
+            </Location>
+         </Locations>
+      </FileBreakpoint>
+   </FileBreakpoints>
+</Bucket>

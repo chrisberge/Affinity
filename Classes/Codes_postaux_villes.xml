@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF8" standalone="no" ?><codes_villes>
+    <code_ville>
+        <code>75008</code>
+        <ville>PARIS</ville>
+    </code_ville>
+    <code_ville>
+        <code>83000</code>
+        <ville>Draguignan</ville>
+    </code_ville>
+</codes_villes>
