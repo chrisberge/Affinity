@@ -683,12 +683,30 @@
     
 	NSString *surface = [uneAnnonce valueForKey:@"surface"];
     surface = [surface stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    if (surface == nil) {
+        surface = @"";
+    }
+    else{
+        surface = [surface stringByAppendingString:@"m²"];
+    }
 	
     NSString *nbPieces = [uneAnnonce valueForKey:@"nb_pieces"];
     nbPieces = [nbPieces stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
+    if (nbPieces == nil) {
+        nbPieces = @"";
+    }
+    else{
+        nbPieces = [nbPieces stringByAppendingString:@"piece"];
+    }
+    
     NSString *type = [uneAnnonce valueForKey:@"type"];
     type = [type stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    if (type == nil) {
+        type = @"";
+    }
     
     NSString *isS = @"";
     
@@ -696,7 +714,7 @@
         isS = @"s";
     }
     
-	NSString *subTitle = [[NSString alloc] initWithFormat:@"%@ %@m², %@ piece%@\n%@ %@",
+	NSString *subTitle = [[NSString alloc] initWithFormat:@"%@ %@ %@ %@\n%@ %@",
                           type,
                           surface,
                           nbPieces,

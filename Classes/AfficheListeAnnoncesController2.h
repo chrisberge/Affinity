@@ -32,7 +32,6 @@
 @property (nonatomic, copy) NSMutableDictionary *criteres;
 @property (nonatomic, copy) Annonce *annonceSelected;
 
-- (id)initFromView:(NSString *)viewName;
 -(NSString *)setTextMinMax:(NSString *)critere unit:(NSString *)unit texte:(NSString *)text;
 
 @end

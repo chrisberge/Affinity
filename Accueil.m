@@ -244,31 +244,33 @@
     
     /*--- REQUETE COVERFLOW ---*/
     
-    NSString *bodyString = [NSString stringWithFormat:@"%@?part=%@&id_agence=%@&coverflow=YES&%@",
-                            appDelegate.url_serveur,
-                            appDelegate.partenaire,
-                            appDelegate.id_agence,
-                            appDelegate.transition];
+    NSString *bodyString = [NSString stringWithFormat:@"%@",
+                            appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    //ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    
+    [request setPostValue:@"YES" forKey:@"coverflow"];
+    
     [request setUserInfo:[NSDictionary dictionaryWithObject:@"biens recents" forKey:@"name"]];
     [networkQueue addOperation:request];
     /*--- REQUETE COVERFLOW ---*/
     
     /*--- REQUETE VILLES ET CODES POSTAUX ---*/
     
-    bodyString = [NSString stringWithFormat:@"%@?part=%@&id_agence=%@&villes=YES",
-                  appDelegate.url_serveur,
-                  appDelegate.partenaire,
-                  appDelegate.id_agence];
+    bodyString = [NSString stringWithFormat:@"%@",
+                  appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:@"villes" forKey:@"name"]];
-    [networkQueue addOperation:request];
+    ASIFormDataRequest *requestVilles = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    
+    [requestVilles setPostValue:@"YES" forKey:@"villes"];
+    
+    [requestVilles setUserInfo:[NSDictionary dictionaryWithObject:@"villes" forKey:@"name"]];
+    [networkQueue addOperation:requestVilles];
     /*--- REQUETE VILLES ET CODES POSTAUX ---*/
     
     /*--- REQUETE MISE A JOUR INFOS AGENCE ---*/
@@ -281,9 +283,9 @@
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:@"infos_agence" forKey:@"name"]];
-    [networkQueue addOperation:request];
+    ASIHTTPRequest *requestInfos = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    [requestInfos setUserInfo:[NSDictionary dictionaryWithObject:@"infos_agence" forKey:@"name"]];
+    //[networkQueue addOperation:requestInfos];
     /*--- REQUETE MISE A JOUR INFOS AGENCE ---*/
     
     [networkQueue go];
@@ -302,11 +304,11 @@
     
     if ([string length] > 0) {
         
-        NSUInteger zap = 60;
+        NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
-        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(59, [dataString length] - zap)]];
+        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         
         //ON PARSE DU XML
         
@@ -397,11 +399,11 @@
     
     if ([string length] > 0) {
         
-        NSUInteger zap = 60;
+        NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
-        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(59, [dataString length] - zap)]];
+        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         
         //ON PARSE DU XML
         
@@ -413,14 +415,16 @@
          NSLog(@"REPONSE DU WEB: %@\n",string);
          */
         
-        if ([string rangeOfString:@"<biens></biens>"].length != 0) {
+        if ([string rangeOfString:@"<Annonces></Annonces>"].length != 0) {
             //AUCUNE ANNONCES
             NSDictionary *userInfo = [NSDictionary 
-                                      dictionaryWithObject:@"Aucun bien ne correspond à ces critères dans notre base de données."
+                                      dictionaryWithObject:@"Aucune annonce pour le coverflow accueil."
                                       forKey:NSLocalizedDescriptionKey];
             
-            error =[NSError errorWithDomain:@"Aucun bien trouvé."
+            error =[NSError errorWithDomain:@"Aucune annonce."
                                        code:1 userInfo:userInfo];
+            NSLog(@"AUCUNE ANNONCE");
+            [pvc.view removeFromSuperview];
         }
         else{
             NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];

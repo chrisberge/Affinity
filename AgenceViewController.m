@@ -283,16 +283,17 @@
 	[networkQueue setDelegate:self];
     /*--- QUEUE POUR LES REQUETES HTTP ---*/
     
-    NSString *bodyString = [NSString stringWithFormat:@"%@?part=%@&id_agence=%@&coverflow=YES&%@",
-                            appDelegate.url_serveur,
-                            appDelegate.partenaire,
-                            appDelegate.id_agence,
-                            appDelegate.transition];
+    NSString *bodyString = [NSString stringWithFormat:@"%@",
+                            appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
-    [request setUserInfo:[NSDictionary dictionaryWithObject:[NSString stringWithString:@"biens recents"] forKey:@"name"]];
+    //ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    
+    [request setPostValue:@"YES" forKey:@"coverflow"];
+    
+    [request setUserInfo:[NSDictionary dictionaryWithObject:@"biens recents" forKey:@"name"]];
     [networkQueue addOperation:request];
     
     [networkQueue go];
@@ -311,11 +312,11 @@
     
     if ([string length] > 0) {
         
-        NSUInteger zap = 60;
+        NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
-        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(59, [dataString length] - zap)]];
+        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         
         //ON PARSE DU XML
         
@@ -327,14 +328,16 @@
          NSLog(@"REPONSE DU WEB: %@\n",string);
          */
         
-        if ([string rangeOfString:@"<biens></biens>"].length != 0) {
+        if ([string rangeOfString:@"<Annonces></Annonces>"].length != 0) {
             //AUCUNE ANNONCES
             NSDictionary *userInfo = [NSDictionary 
-                                      dictionaryWithObject:@"Aucun bien ne correspond à ces critères dans notre base de données."
+                                      dictionaryWithObject:@"Aucune annonce pour le coverflow agence."
                                       forKey:NSLocalizedDescriptionKey];
             
-            error =[NSError errorWithDomain:@"Aucun bien trouvé."
+            error =[NSError errorWithDomain:@"Aucune annonce."
                                        code:1 userInfo:userInfo];
+            NSLog(@"AUCUNE ANNONCE");
+            [pvc.view removeFromSuperview];
         }
         else{
             NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];

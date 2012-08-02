@@ -622,7 +622,7 @@
     NSLog(@"dataBrute long: %d",[responseData length]);
     
     NSString * string = [[NSString alloc] initWithData:responseData encoding:NSISOLatin1StringEncoding];
-    //NSString * string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    
     NSLog(@"REPONSE DU WEB: \"%@\"\n",string);
     
     NSError *error = nil;
@@ -631,8 +631,7 @@
         
         NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        //NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
         NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         //NSData *data = [[NSData alloc] initWithData:responseData];

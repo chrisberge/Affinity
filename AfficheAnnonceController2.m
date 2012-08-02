@@ -73,7 +73,7 @@
 
     //SCROLLVIEW
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, 320, 340)];
-    [scrollView setContentSize:CGSizeMake(320, 1120)];
+    [scrollView setContentSize:CGSizeMake(320, 1060)];
     [scrollView setScrollEnabled:YES];
     [self.view addSubview:scrollView];
     
@@ -166,7 +166,7 @@
     
     [scrollView addSubview:labelPrix];
     [scrollView addSubview:labelVille];
-    [scrollView addSubview:labelSurface];
+    //[scrollView addSubview:labelSurface];
     
     [labelPrix release];
     [labelVille release];
@@ -218,7 +218,7 @@
     
     //TEXTE
     UITextView *descriptif = [[UITextView alloc] initWithFrame:CGRectMake(0, 226, 320, 100)];
-    descriptif.text = [lAnnonce valueForKey:@"descriptif"];
+    descriptif.text = [lAnnonce valueForKey:@"description"];
     descriptif.backgroundColor = [UIColor clearColor];
     descriptif.editable = NO;
     [scrollView addSubview:descriptif];
@@ -321,10 +321,10 @@
     labelChauffage.text = [NSString stringWithFormat:@"- Chauffage: %@", chauffage];
     
     [scrollView addSubview:labelPrix2];
-    [scrollView addSubview:labelSurface2];
+    /*[scrollView addSubview:labelSurface2];
     [scrollView addSubview:labelEtage];
     [scrollView addSubview:labelAscenseur];
-    [scrollView addSubview:labelChauffage];
+    [scrollView addSubview:labelChauffage];*/
     
     [labelPrix2 release];
     [labelSurface2 release];
@@ -335,22 +335,22 @@
     /*---- INFOS ----*/
     
     /*---- BILAN CONSO ENERGIE ----*/
-    UILabel *bilanCe = [[UILabel alloc] initWithFrame:CGRectMake(10, 450, 250, 30)];
+    UILabel *bilanCe = [[UILabel alloc] initWithFrame:CGRectMake(10, 367, 250, 30)];
     bilanCe.font = [UIFont fontWithName:@"Arial-BoldMT" size:12];
     bilanCe.text = @"Bilan consommation énergie";
     bilanCe.backgroundColor = [UIColor clearColor];
     [scrollView addSubview:bilanCe];
     
     NSString *lettreCE = [lAnnonce valueForKey:@"bilan_ce"];
-    //lettreCE = @"B";
+    lettreCE = @"";
     lettreCE = [lettreCE stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     NSLog(@"LETTRE CE: \"%@\"",lettreCE);
     
-    int nextY = 500;
+    int nextY = 420;
     BOOL isCe = NO;
     
     if ([lettreCE length] == 0) {
-        UILabel *bilanCeNC = [[UILabel alloc] initWithFrame:CGRectMake(10, 480, 250, 20)];
+        UILabel *bilanCeNC = [[UILabel alloc] initWithFrame:CGRectMake(10, 397, 250, 20)];
         bilanCeNC.font = [UIFont fontWithName:@"Arial" size:12];
         bilanCeNC.text = @"NC";
         [scrollView addSubview:bilanCeNC];
@@ -674,7 +674,7 @@
     /*--- CONTACT ---*/
     
     if (!isCe && !isGes) {
-        [scrollView setContentSize:CGSizeMake(320, 780)];
+        [scrollView setContentSize:CGSizeMake(320, 700)];
     }
     
     if (isCe && !isGes) {
@@ -848,7 +848,7 @@
                                    [lAnnonce valueForKey:@"ville"], @"ville",
                                    [lAnnonce valueForKey:@"codePostal"], @"codePostal",
                                    prix, @"prix",
-                                   [lAnnonce valueForKey:@"descriptif"], @"descriptif",
+                                   [lAnnonce valueForKey:@"description"], @"description",
                                    photos, @"photos",
                                    bilan_ce, @"bilan_ce",
                                    bilan_ges, @"bilan_ges",
