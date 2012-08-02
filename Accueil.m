@@ -39,15 +39,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(afficheAnnonceReady:) name:@"afficheAnnonceReady" object: nil];
     
 	self.view = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,480)];
-    UIImageView *enTete = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header.png"]];
-    [enTete setFrame:CGRectMake(0,0,320,50)];
+    UIImageView *enTete = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"header_accueil.png"]];
+    [enTete setFrame:CGRectMake(0,0,320,210)];
     [self.view addSubview:enTete];
     [enTete release];
     
     //BANDEAU ACCUEIL
     UIImageView *bandeauFavoris = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bandeau-accueil.png"]];
     [bandeauFavoris setFrame:CGRectMake(0,50,320,20)];
-    [self.view addSubview:bandeauFavoris];
+    //[self.view addSubview:bandeauFavoris];
     [bandeauFavoris release];
     
     myTableViewController = [[RootViewController alloc] init];

@@ -159,6 +159,7 @@
 		83C4CBD213D0D578002CB110 /* prix-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C4CBCC13D0D578002CB110 /* prix-up.png */; };
 		83C4CBD513D0F734002CB110 /* GeolocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CBD413D0F734002CB110 /* GeolocViewController.m */; };
 		83C4CC2A13D112EB002CB110 /* AddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C4CC2913D112EB002CB110 /* AddressAnnotation.m */; };
+		83C5C83F15CAC3CB001F890C /* header_accueil.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C5C83E15CAC3CB001F890C /* header_accueil.png */; };
 		83C66293139CF7DF00C33CAE /* SelectionSurfacePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C66291139CF7DF00C33CAE /* SelectionSurfacePickerController.m */; };
 		83C66294139CF7DF00C33CAE /* SelectionSurfacePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83C66292139CF7DF00C33CAE /* SelectionSurfacePickerController.xib */; };
 		83C662CF139D0BB900C33CAE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83C662CE139D0BB900C33CAE /* QuartzCore.framework */; };
@@ -404,6 +405,7 @@
 		83C4CBD413D0F734002CB110 /* GeolocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeolocViewController.m; sourceTree = "<group>"; };
 		83C4CC2813D112EA002CB110 /* AddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAnnotation.h; sourceTree = "<group>"; };
 		83C4CC2913D112EB002CB110 /* AddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAnnotation.m; sourceTree = "<group>"; };
+		83C5C83E15CAC3CB001F890C /* header_accueil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_accueil.png; sourceTree = "<group>"; };
 		83C66290139CF7DF00C33CAE /* SelectionSurfacePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionSurfacePickerController.h; sourceTree = "<group>"; };
 		83C66291139CF7DF00C33CAE /* SelectionSurfacePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionSurfacePickerController.m; sourceTree = "<group>"; };
 		83C66292139CF7DF00C33CAE /* SelectionSurfacePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionSurfacePickerController.xib; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 		838150DE13CF0D380070C3F0 /* Accueil */ = {
 			isa = PBXGroup;
 			children = (
+				83C5C83E15CAC3CB001F890C /* header_accueil.png */,
 				83EF0E2A14FE696000775FD9 /* bandeau-accueil.png */,
 				83EF0E2C14FE6D0B00775FD9 /* coverflow-background.png */,
 				8386BF5613E14A6D00BF91AB /* recherche-multicriteres.png */,
@@ -1225,6 +1228,7 @@
 				83D2C030158239DA008D79AD /* bouton-supprimer.png in Resources */,
 				83D2C03215823EE4008D79AD /* bouton-supprimer-recherche.png in Resources */,
 				831089CC1593883200C746F4 /* presentation-akios.txt in Resources */,
+				83C5C83F15CAC3CB001F890C /* header_accueil.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
