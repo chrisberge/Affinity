@@ -1050,7 +1050,7 @@
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.textColor = [UIColor blackColor];
     
-	NSString *codePostal = [bien valueForKey:@"cp"];
+	NSString *codePostal = [bien valueForKey:@"codePostal"];
     codePostal = [codePostal stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     NSString *ville = [bien valueForKey:@"ville"];
@@ -1126,7 +1126,7 @@
     [annonceSelected setValue:[bien1 valueForKey:@"nb_pieces"] forKey:@"nb_pieces"];
     [annonceSelected setValue:[bien1 valueForKey:@"surface"] forKey:@"surface"];
     [annonceSelected setValue:[bien1 valueForKey:@"ville"] forKey:@"ville"];
-    [annonceSelected setValue:[bien1 valueForKey:@"cp"] forKey:@"cp"];
+    [annonceSelected setValue:[bien1 valueForKey:@"codePostal"] forKey:@"codePostal"];
     [annonceSelected setValue:[bien1 valueForKey:@"prix"] forKey:@"prix"];
     [annonceSelected setValue:[bien1 valueForKey:@"descriptif"] forKey:@"descriptif"];
     [annonceSelected setValue:[bien1 valueForKey:@"photos"] forKey:@"photos"];

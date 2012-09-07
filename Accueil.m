@@ -244,15 +244,15 @@
     
     /*--- REQUETE COVERFLOW ---*/
     
-    NSString *bodyString = [NSString stringWithFormat:@"%@",
+    NSString *bodyString = [NSString stringWithFormat:@"%@?coverflow=YES",
                             appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    //ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    //ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
     
-    [request setPostValue:@"YES" forKey:@"coverflow"];
+    //[request setPostValue:@"YES" forKey:@"coverflow"];
     
     [request setUserInfo:[NSDictionary dictionaryWithObject:@"biens recents" forKey:@"name"]];
     [networkQueue addOperation:request];
@@ -260,14 +260,15 @@
     
     /*--- REQUETE VILLES ET CODES POSTAUX ---*/
     
-    bodyString = [NSString stringWithFormat:@"%@",
+    bodyString = [NSString stringWithFormat:@"%@?villes=YES",
                   appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    ASIFormDataRequest *requestVilles = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    ASIHTTPRequest *requestVilles = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    //ASIFormDataRequest *requestVilles = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
     
-    [requestVilles setPostValue:@"YES" forKey:@"villes"];
+    //[requestVilles setPostValue:@"YES" forKey:@"villes"];
     
     [requestVilles setUserInfo:[NSDictionary dictionaryWithObject:@"villes" forKey:@"name"]];
     [networkQueue addOperation:requestVilles];
@@ -281,7 +282,7 @@
                   appDelegate.nom_appli,
                   escapedDate];
     
-    NSLog(@"bodyString:%@\n",bodyString);
+    //NSLog(@"bodyString:%@\n",bodyString);
     
     ASIHTTPRequest *requestInfos = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
     [requestInfos setUserInfo:[NSDictionary dictionaryWithObject:@"infos_agence" forKey:@"name"]];

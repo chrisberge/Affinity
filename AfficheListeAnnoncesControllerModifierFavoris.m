@@ -684,7 +684,7 @@
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.textColor = [UIColor blackColor];
     
-	NSString *codePostal = [uneAnnonce valueForKey:@"cp"];
+	NSString *codePostal = [uneAnnonce valueForKey:@"codePostal"];
     codePostal = [codePostal stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     NSString *ville = [uneAnnonce valueForKey:@"ville"];
