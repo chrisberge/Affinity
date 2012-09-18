@@ -392,7 +392,7 @@
     [criteres1 setValue:@"" forKey:@"villes"];
     
     /*--- CODE POSTAL POUR TESTS ---*/
-    [criteres1 setValue:@"PRANGINS" forKey:@"ville1"];
+    //[criteres1 setValue:@"PRANGINS" forKey:@"ville1"];
     /*--- CODE POSTAL POUR TESTS ---*/
     
     enume = [criteres1 keyEnumerator];
