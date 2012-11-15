@@ -283,15 +283,15 @@
 	[networkQueue setDelegate:self];
     /*--- QUEUE POUR LES REQUETES HTTP ---*/
     
-    NSString *bodyString = [NSString stringWithFormat:@"%@",
+    NSString *bodyString = [NSString stringWithFormat:@"%@?coverflow=YES",
                             appDelegate.url_serveur];
     
     NSLog(@"bodyString:%@\n",bodyString);
     
-    //ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
+    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:bodyString]] autorelease];
+    //ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:bodyString]];
     
-    [request setPostValue:@"YES" forKey:@"coverflow"];
+    //[request setPostValue:@"YES" forKey:@"coverflow"];
     
     [request setUserInfo:[NSDictionary dictionaryWithObject:@"biens recents" forKey:@"name"]];
     [networkQueue addOperation:request];

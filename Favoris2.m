@@ -1071,14 +1071,16 @@
         isS = @"s";
     }
     
-	NSString *subTitle = [[NSString alloc] initWithFormat:@"%@ %@m², %@ piece%@\n%@ %@",
-                          type,
-                          surface,
-                          nbPieces,
-                          isS,
-                          ville,
-                          codePostal
-                          ];
+	NSString *subTitle = @"";
+    
+    if (ville != NULL) {
+        subTitle = [subTitle stringByAppendingString:ville];
+    }
+    
+    if (codePostal != NULL) {
+        subTitle = [subTitle stringByAppendingFormat:@" %@", codePostal];
+    }
+    
 	cell.detailTextLabel.text = subTitle;
 	
 	[texte release];
@@ -1122,20 +1124,20 @@
 	NSDictionary *bien1 = [biensSauves objectAtIndex:indexPath.row];
     
     [annonceSelected setValue:[bien1 valueForKey:@"ref"] forKey:@"ref"];
-    [annonceSelected setValue:[bien1 valueForKey:@"type"] forKey:@"type"];
+    /*[annonceSelected setValue:[bien1 valueForKey:@"type"] forKey:@"type"];
     [annonceSelected setValue:[bien1 valueForKey:@"nb_pieces"] forKey:@"nb_pieces"];
-    [annonceSelected setValue:[bien1 valueForKey:@"surface"] forKey:@"surface"];
+    [annonceSelected setValue:[bien1 valueForKey:@"surface"] forKey:@"surface"];*/
     [annonceSelected setValue:[bien1 valueForKey:@"ville"] forKey:@"ville"];
     [annonceSelected setValue:[bien1 valueForKey:@"codePostal"] forKey:@"codePostal"];
     [annonceSelected setValue:[bien1 valueForKey:@"prix"] forKey:@"prix"];
     [annonceSelected setValue:[bien1 valueForKey:@"descriptif"] forKey:@"descriptif"];
     [annonceSelected setValue:[bien1 valueForKey:@"photos"] forKey:@"photos"];
     [annonceSelected setValue:[bien1 valueForKey:@"bilan_ce"] forKey:@"bilan_ce"];
-    [annonceSelected setValue:[bien1 valueForKey:@"bilan_ges"] forKey:@"bilan_ges"];
+    /*[annonceSelected setValue:[bien1 valueForKey:@"bilan_ges"] forKey:@"bilan_ges"];
     [annonceSelected setValue:[bien1 valueForKey:@"etage"] forKey:@"etage"];
     [annonceSelected setValue:[bien1 valueForKey:@"ascenseur"] forKey:@"ascenseur"];
     [annonceSelected setValue:[bien1 valueForKey:@"chauffage"] forKey:@"chauffage"];
-    [annonceSelected setValue:[bien1 valueForKey:@"date"] forKey:@"date"];
+    [annonceSelected setValue:[bien1 valueForKey:@"date"] forKey:@"date"];*/
     
     appDelegate.annonceBiensFavoris = annonceSelected;
     

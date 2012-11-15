@@ -840,23 +840,23 @@
     NSString *bilan_ges = [lAnnonce valueForKey:@"bilan_ges"];
     bilan_ges = [bilan_ges stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
-    NSDictionary *recordAnnonce = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                   [lAnnonce valueForKey:@"ref"], @"ref",
-                                   [lAnnonce valueForKey:@"type"], @"type",
-                                   nbPieces, @"nb_pieces",
-                                   [lAnnonce valueForKey:@"surface"], @"surface",
-                                   [lAnnonce valueForKey:@"ville"], @"ville",
-                                   [lAnnonce valueForKey:@"codePostal"], @"codePostal",
-                                   prix, @"prix",
-                                   [lAnnonce valueForKey:@"description"], @"description",
-                                   photos, @"photos",
-                                   bilan_ce, @"bilan_ce",
-                                   bilan_ges, @"bilan_ges",
-                                   [lAnnonce valueForKey:@"etage"], @"etage",
-                                   [lAnnonce valueForKey:@"ascenseur"], @"ascenseur",
-                                   [lAnnonce valueForKey:@"chauffage"], @"chauffage",
-                                   [lAnnonce valueForKey:@"date"], @"date",
-                                   nil];
+    NSMutableDictionary *recordAnnonce = [[NSMutableDictionary alloc] init];
+    
+    NSArray *annonceKeys = [NSArray arrayWithObjects:
+                            @"ref",
+                            @"ville",
+                            @"codePostal",
+                            @"prix",
+                            @"description",
+                            @"photos",
+                            @"bilan_ce",
+                            nil];
+    
+    for (NSString *key in annonceKeys) {
+        if ([lAnnonce valueForKey:key] != @"") {
+            [recordAnnonce setValue:[lAnnonce valueForKey:key] forKey:key];
+        }
+    }
     
     NSLog(@"Annonce record: %@", recordAnnonce);
     

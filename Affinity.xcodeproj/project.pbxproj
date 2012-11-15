@@ -29,6 +29,7 @@
 		832314BB1588C8F9009BD16D /* AfficheListeAnnoncesControllerModifierFavoris.m in Sources */ = {isa = PBXBuildFile; fileRef = 832314BA1588C8F9009BD16D /* AfficheListeAnnoncesControllerModifierFavoris.m */; };
 		832314BE1588D564009BD16D /* RootViewControllerModifierFavoris.m in Sources */ = {isa = PBXBuildFile; fileRef = 832314BD1588D564009BD16D /* RootViewControllerModifierFavoris.m */; };
 		832D167F1484F5D600831B30 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 832D167E1484F5D600831B30 /* libz.1.2.5.dylib */; };
+		832F79A31654F0C20054247C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 832F79A21654F0C20054247C /* Default-568h@2x.png */; };
 		8368060F13D5FE4E0047E32B /* DiapoController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368060E13D5FE4E0047E32B /* DiapoController3.m */; };
 		8368061213D609620047E32B /* AgenceModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8368061113D609620047E32B /* AgenceModalView.m */; };
 		836C5A09152DC6E1008BDE0B /* AfficheListeAnnoncesController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 836C5A08152DC6E1008BDE0B /* AfficheListeAnnoncesController3.m */; };
@@ -228,6 +229,7 @@
 		832314BC1588D563009BD16D /* RootViewControllerModifierFavoris.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewControllerModifierFavoris.h; sourceTree = "<group>"; };
 		832314BD1588D564009BD16D /* RootViewControllerModifierFavoris.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerModifierFavoris.m; sourceTree = "<group>"; };
 		832D167E1484F5D600831B30 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		832F79A21654F0C20054247C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8368060D13D5FE4E0047E32B /* DiapoController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiapoController3.h; sourceTree = "<group>"; };
 		8368060E13D5FE4E0047E32B /* DiapoController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiapoController3.m; sourceTree = "<group>"; };
 		8368061013D609620047E32B /* AgenceModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgenceModalView.h; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				832F79A21654F0C20054247C /* Default-568h@2x.png */,
 				837C759D1510D4D1002F99D5 /* Conf */,
 				839AA0C113A0FF6600848540 /* Images */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -1229,6 +1232,7 @@
 				83D2C03215823EE4008D79AD /* bouton-supprimer-recherche.png in Resources */,
 				831089CC1593883200C746F4 /* presentation-akios.txt in Resources */,
 				83C5C83F15CAC3CB001F890C /* header_accueil.png in Resources */,
+				832F79A31654F0C20054247C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
