@@ -28,21 +28,21 @@
 	
 }
 
-@property (nonatomic, retain) NSString *ref;
-@property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) NSString *nb_pieces;
-@property (nonatomic, retain) NSString *surface;
-@property (nonatomic, retain) NSString *ville;
+@property (nonatomic, copy) NSString *ref;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *nb_pieces;
+@property (nonatomic, copy) NSString *surface;
+@property (nonatomic, copy) NSString *ville;
 @property (nonatomic, copy) NSString *codePostal;
-@property (nonatomic, retain) NSString *prix;
-@property (nonatomic, retain) NSString *description;
-@property (nonatomic, retain) NSString *bilan_ce;
-@property (nonatomic, retain) NSString *bilan_ges;
-@property (nonatomic, retain) NSString *photos;
-@property (nonatomic, retain) NSString *etage;
-@property (nonatomic, retain) NSString *ascenseur;
-@property (nonatomic, retain) NSString *chauffage;
-@property (nonatomic, retain) NSString *date;
+@property (nonatomic, copy) NSString *prix;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *bilan_ce;
+@property (nonatomic, copy) NSString *bilan_ges;
+@property (nonatomic, copy) NSString *photos;
+@property (nonatomic, copy) NSString *etage;
+@property (nonatomic, copy) NSString *ascenseur;
+@property (nonatomic, copy) NSString *chauffage;
+@property (nonatomic, copy) NSString *date;
 
 
 @end

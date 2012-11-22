@@ -24,7 +24,6 @@
     AFOpenFlowViewDiapo *myOpenFlowView;
     UIScrollView *scrollView;
     ProgressViewContoller *pvc;
-    UIButton *boutonRetour;
     AffinityAppDelegate *appDelegate;
 }
 

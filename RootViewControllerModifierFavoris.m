@@ -381,6 +381,7 @@
 }
 
 - (void)makeRequest{
+    nbRequetes++;
     
     NSString *bodyString = [NSString stringWithFormat:@"%@",
                             appDelegate.url_serveur];
@@ -645,12 +646,11 @@
     
     if ([string length] > 0) {
         
-        NSUInteger zap = 60;
+        NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-        //NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
-        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(59, [dataString length] - zap)]];
+        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         //NSData *data = [[NSData alloc] initWithData:responseData];
         
         //ON PARSE DU XML
@@ -689,6 +689,7 @@
                 NSLog(@"cp elargi: %@", cp);
                 
                 [criteres1 setValue:cp forKey:@"cp1"];
+                [criteres1 setValue:@"" forKey:@"ville1"];
                 [self makeRequest];
             }
             else{

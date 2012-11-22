@@ -687,6 +687,10 @@
 	NSString *codePostal = [uneAnnonce valueForKey:@"codePostal"];
     codePostal = [codePostal stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
+    if (codePostal == nil) {
+        codePostal = @"";
+    }
+    
     NSString *ville = [uneAnnonce valueForKey:@"ville"];
     ville = [ville stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     

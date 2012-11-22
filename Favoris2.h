@@ -73,6 +73,7 @@
 @property (nonatomic, assign) NSString *whichView;
 @property (nonatomic, retain) RootViewControllerModifierFavoris *rechercheMulti;
 @property (nonatomic, copy) NSMutableArray *tableauAnnonces1;
+@property (nonatomic, copy) NSMutableArray *biensSauves;
 @property (nonatomic, copy) Annonce *annonceSelected;
 @property (nonatomic, assign) NSMutableDictionary *criteres2;
 

@@ -381,6 +381,7 @@
 }
 
 - (void)makeRequest{
+    nbRequetes++;
     
     NSString *bodyString = [NSString stringWithFormat:@"%@",
                             appDelegate.url_serveur];
@@ -406,6 +407,7 @@
     
     while((key = [enume nextObject])) {
         if ([criteres1 objectForKey:key] != @"") {
+            //NSLog(@"CRITERE: %@", [criteres1 objectForKey:key]);
             [request setPostValue:[criteres1 valueForKey:key] forKey:key];
             [criteres2 setObject:[criteres1 objectForKey:key] forKey:key];
         }
@@ -672,6 +674,7 @@
                 NSLog(@"cp elargi: %@", cp);
                 
                 [criteres1 setValue:cp forKey:@"cp1"];
+                [criteres1 setValue:@"" forKey:@"ville1"];
                 [self makeRequest];
             }
             else{

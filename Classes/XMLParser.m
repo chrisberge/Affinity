@@ -63,6 +63,7 @@
 	//If we encounter the Book element howevere, we want to add the book object to the array
 	// and release the object.
 	if([elementName isEqualToString:@"Annonce"]) {
+        //NSLog(@"WHICH VIEW: %@", appDelegate.whichView);
         
         if(appDelegate.whichView == @"multicriteres")
             [appDelegate.accueilView.myTableViewController.tableauAnnonces1 addObject:uneAnnonce];

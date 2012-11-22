@@ -59,6 +59,8 @@
     
     listeAnnonces = appDelegate.favorisView.tableauAnnonces1;
     criteres = appDelegate.favorisView.criteres2;
+    
+    NSLog(@"LISTE ANNONCES:%@",listeAnnonces);
 	
     [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(afficheAnnonceReady:) name:@"afficheAnnonceReady" object: nil];
     
@@ -643,6 +645,7 @@
 	// Configure the cell...
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	Annonce *uneAnnonce = [listeAnnonces objectAtIndex:indexPath.row];
+    NSLog(@"LISTE ANNONCES:%@",listeAnnonces);
     
 	//IMAGE
     
@@ -680,6 +683,10 @@
     
 	NSString *codePostal = [uneAnnonce valueForKey:@"codePostal"];
     codePostal = [codePostal stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    if (codePostal == nil) {
+        codePostal = @"";
+    }
     
     NSString *ville = [uneAnnonce valueForKey:@"ville"];
     ville = [ville stringByReplacingOccurrencesOfString:@"\n" withString:@""];

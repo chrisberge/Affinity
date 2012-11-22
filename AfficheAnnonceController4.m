@@ -150,9 +150,15 @@
     
     labelPrix.text = [NSString stringWithFormat:@"%@ €", prix];
     
-    labelVille.text = [NSString stringWithFormat:@"%@ %@",
+    NSString *cp = [lAnnonce valueForKey:@"codePostal"];
+    
+    if (cp == nil) {
+        cp = @"";
+    }
+    
+    labelVille.text = [NSString stringWithFormat:@"%@  %@",
                        [lAnnonce valueForKey:@"ville"],
-                       [lAnnonce valueForKey:@"codePostal"]
+                       cp
                        ];
     
     labelSurface.text = [NSString stringWithFormat:@"%@ %@m², %@ piece%@",

@@ -10,7 +10,7 @@
 
 @implementation Favoris2
 
-@synthesize whichView, rechercheMulti, tableauAnnonces1, annonceSelected, criteres2;
+@synthesize whichView, rechercheMulti, tableauAnnonces1, annonceSelected, criteres2, biensSauves;
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
@@ -30,6 +30,8 @@
     self.navigationController.navigationBar.hidden = YES;
     
     appDelegate = (AffinityAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    appDelegate.whichView = @"favoris";
     
     tableauAnnonces1 = [[NSMutableArray alloc] init];
     criteres2 = [[NSMutableDictionary alloc] init];
@@ -337,16 +339,27 @@
 - (void) getBiens{
     NSString *directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     
-    [biensSauves removeAllObjects];
+    for (NSDictionary *dict in biensSauves) {
+        dict = nil;
+        [dict release];
+    }
+    
+    //[biensSauves removeAllObjects];
+    biensSauves = nil;
+    [biensSauves release];
+    
+    biensSauves = [[NSMutableArray alloc] init];
     
     for (int i = 1; i < 11; i++) {
         NSString *name = [NSString stringWithFormat:@"bien%d.plist", i];
-        NSDictionary *bien = [NSDictionary dictionaryWithContentsOfFile:
+        NSDictionary *bien = [[NSDictionary alloc] initWithContentsOfFile:
                               [directory stringByAppendingPathComponent:name]];
         if (bien != nil) {
+            //NSLog(@"BIEN BIEN: %@", bien);
             [biensSauves addObject:bien];
         }
     }
+    NSLog(@"BIENS SAUVES: %@", biensSauves);
 }
 
 - (void) buttonInfosPushed:(id)sender
@@ -387,6 +400,46 @@
     appDelegate.whichView = @"favoris";
     NSMutableDictionary *criteres1 = [recherchesSauvees objectAtIndex:num];
     
+    NSString *bodyString = [NSString stringWithFormat:@"%@",
+                            appDelegate.url_serveur];
+    
+    NSEnumerator *enume;
+    NSString *key;
+    
+    [criteres1 setValue:@"" forKey:@"nbPieces"];
+    [criteres1 setValue:@"" forKey:@"villes"];
+    
+    /*--- CODE POSTAL POUR TESTS ---*/
+    //[criteres1 setValue:@"PRANGINS" forKey:@"ville1"];
+    /*--- CODE POSTAL POUR TESTS ---*/
+    
+    enume = [criteres1 keyEnumerator];
+    
+    [criteres2 removeAllObjects];
+    
+    /*--- REQUETE POST ---*/
+    NSURL *url = [NSURL URLWithString:bodyString];
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    while((key = [enume nextObject])) {
+        if ([criteres1 objectForKey:key] != @"") {
+            //NSLog(@"CRITERE: %@", [criteres1 objectForKey:key]);
+            [request setPostValue:[criteres1 valueForKey:key] forKey:key];
+            [criteres2 setObject:[criteres1 objectForKey:key] forKey:key];
+        }
+    }
+    
+    [request setUserInfo:[NSDictionary dictionaryWithObject:@"recherche multicriteres" forKey:@"name"]];
+    
+    [networkQueue addOperation:request];
+    [networkQueue go];
+    /*--- REQUETE POST ---*/
+    
+    /*REQUETE GET
+    appDelegate.whichView = @"favoris";
+    NSMutableDictionary *criteres1 = [recherchesSauvees objectAtIndex:num];
+    
     NSString *bodyString = [NSString stringWithFormat:@"%@?part=%@&id_agence=%@&%@&",
                             appDelegate.url_serveur,
                             appDelegate.partenaire,
@@ -422,7 +475,7 @@
     [request setUserInfo:[NSDictionary dictionaryWithObject:[NSString stringWithString:@"recherche multicriteres"] forKey:@"name"]];
     [networkQueue addOperation:request];
     
-    [networkQueue go];
+    [networkQueue go];*/
 }
 
 - (void)requestDone:(ASIHTTPRequest *)request
@@ -438,11 +491,11 @@
     
     if ([string length] > 0) {
         
-        NSUInteger zap = 60;
+        NSUInteger zap = 39;
         
-        NSData *dataString = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        NSData *dataString = [string dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
         
-        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(59, [dataString length] - zap)]];
+        NSData *data = [[NSData alloc] initWithData:[dataString subdataWithRange:NSMakeRange(38, [dataString length] - zap)]];
         
         //ON PARSE DU XML
         
@@ -769,17 +822,17 @@
                         break;
                 }
                 
-                NSString *ville = [recherche objectForKey:@"ville1"];
+                NSString *ville_commune = [recherche objectForKey:@"ville1"];
                 
                 switch (i) {
                     case 0:
-                        labelVille1.text = ville;
+                        labelVille1.text = ville_commune;
                         break;
                     case 1:
-                        labelVille2.text = ville;
+                        labelVille2.text = ville_commune;
                         break;
                     case 2:
-                        labelVille3.text = ville;
+                        labelVille3.text = ville_commune;
                         break;
                     default:
                         break;
@@ -788,7 +841,6 @@
                 NSString *prix_mini = [recherche objectForKey:@"prix_mini"];
                 NSString *prix_maxi = [recherche objectForKey:@"prix_maxi"];
                 NSString *prix = @"";
-                NSLog(@"prix_mini: %@",prix_mini);
                 
                 if (prix_mini != nil && prix_maxi != nil) {
                     NSNumber *formattedResult;
@@ -1005,7 +1057,10 @@
     
 	// Configure the cell...
     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    NSDictionary *bien = [NSDictionary dictionaryWithDictionary:[biensSauves objectAtIndex:indexPath.row]];
+    
+    NSDictionary *bien = [[NSDictionary alloc]
+                          initWithDictionary:[biensSauves objectAtIndex:indexPath.row]
+                          copyItems:YES];
     
 	//IMAGE DICLOSURE BUTTON
     UIImage *image = [UIImage   imageNamed:@"bouton-supprimer.png"];
@@ -1017,9 +1072,6 @@
     [button addTarget:self action:@selector(accessoryButtonTapped:event:)  forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor clearColor];
     cell.accessoryView = button;
-    
-	/*NSString *string = [uneAnnonce valueForKey:@"photos"];
-     NSLog(@"string photos: %@",string);*/
     
     image= [UIImage imageNamed:@"appareil-photo-photographie-icone-6076-64.png"];
     [cell.imageView setImage:image];
@@ -1051,30 +1103,13 @@
     cell.detailTextLabel.textColor = [UIColor blackColor];
     
 	NSString *codePostal = [bien valueForKey:@"codePostal"];
-    codePostal = [codePostal stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
-    NSString *ville = [bien valueForKey:@"ville"];
-    ville = [ville stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-	NSString *surface = [bien valueForKey:@"surface"];
-    surface = [surface stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-	
-    NSString *nbPieces = [bien valueForKey:@"nb_pieces"];
-    nbPieces = [nbPieces stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-    NSString *type = [bien valueForKey:@"type"];
-    type = [type stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-    NSString *isS = @"";
-    
-    if ([nbPieces intValue] > 1) {
-        isS = @"s";
-    }
+    NSString *ville1 = [bien valueForKey:@"ville"];
     
 	NSString *subTitle = @"";
     
-    if (ville != NULL) {
-        subTitle = [subTitle stringByAppendingString:ville];
+    if (ville1 != NULL) {
+        subTitle = [subTitle stringByAppendingString:ville1];
     }
     
     if (codePostal != NULL) {
@@ -1084,8 +1119,8 @@
 	cell.detailTextLabel.text = subTitle;
 	
 	[texte release];
-	[subTitle release];
-	
+	[bien release];
+    
     return cell;
 }
 
@@ -1121,28 +1156,32 @@
     
     annonceSelected = [[Annonce alloc] init];
     
-	NSDictionary *bien1 = [biensSauves objectAtIndex:indexPath.row];
+    NSString *ref = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"ref"];
+    NSString *ville = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"ville"];
+    NSString *codePostal = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"codePostal"];
+    NSString *prix = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"prix"];
+    NSString *description = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"description"];
+    NSString *photos = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"photos"];
+    NSString *bilan_ce = [[biensSauves objectAtIndex:indexPath.row] valueForKey:@"bilan_ce"];
     
-    [annonceSelected setValue:[bien1 valueForKey:@"ref"] forKey:@"ref"];
-    /*[annonceSelected setValue:[bien1 valueForKey:@"type"] forKey:@"type"];
-    [annonceSelected setValue:[bien1 valueForKey:@"nb_pieces"] forKey:@"nb_pieces"];
-    [annonceSelected setValue:[bien1 valueForKey:@"surface"] forKey:@"surface"];*/
-    [annonceSelected setValue:[bien1 valueForKey:@"ville"] forKey:@"ville"];
-    [annonceSelected setValue:[bien1 valueForKey:@"codePostal"] forKey:@"codePostal"];
-    [annonceSelected setValue:[bien1 valueForKey:@"prix"] forKey:@"prix"];
-    [annonceSelected setValue:[bien1 valueForKey:@"descriptif"] forKey:@"descriptif"];
-    [annonceSelected setValue:[bien1 valueForKey:@"photos"] forKey:@"photos"];
-    [annonceSelected setValue:[bien1 valueForKey:@"bilan_ce"] forKey:@"bilan_ce"];
-    /*[annonceSelected setValue:[bien1 valueForKey:@"bilan_ges"] forKey:@"bilan_ges"];
-    [annonceSelected setValue:[bien1 valueForKey:@"etage"] forKey:@"etage"];
-    [annonceSelected setValue:[bien1 valueForKey:@"ascenseur"] forKey:@"ascenseur"];
-    [annonceSelected setValue:[bien1 valueForKey:@"chauffage"] forKey:@"chauffage"];
-    [annonceSelected setValue:[bien1 valueForKey:@"date"] forKey:@"date"];*/
+    [annonceSelected setValue:ref forKey:@"ref"];
+    [annonceSelected setValue:ville forKey:@"ville"];
+    
+    if (codePostal != NULL) {
+        [annonceSelected setValue:codePostal forKey:@"codePostal"];
+    }
+    
+    [annonceSelected setValue:prix forKey:@"prix"];
+    [annonceSelected setValue:description forKey:@"description"];
+    [annonceSelected setValue:photos forKey:@"photos"];
+    
+    if (bilan_ce != NULL) {
+        [annonceSelected setValue:bilan_ce forKey:@"bilan_ce"];
+    }
     
     appDelegate.annonceBiensFavoris = annonceSelected;
     
     [NSThread detachNewThreadSelector:@selector(printHUD) toTarget:self withObject:nil];
-    
     
 	AfficheAnnonceController4 *afficheAnnonceController = [[AfficheAnnonceController4 alloc] init];
 	[self.navigationController pushViewController:afficheAnnonceController animated:YES];
@@ -1214,7 +1253,7 @@
         
         [fileManager removeItemAtPath:path error:&error1];
         
-        [biensSauves removeObjectAtIndex:indexASupprimer];
+        [biensSauves removeObjectAtIndex:indexASupprimer];  
         
         for (int j = 1; j < [biensSauves count] + 1; j++) {
             NSDictionary *save = [biensSauves objectAtIndex:j - 1];
